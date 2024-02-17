@@ -1,34 +1,35 @@
-import React from 'react';
-import logo from '../assets/logo.png';
 import bannerImg from '../assets/illustration.png';
-
+import logo from '../assets/logo.png';
 
 const SignIn = () => {
-
-  const handleAddUser = async(event) => {
+  const handleAddUser = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    const user = { email,password };
+    const user = { email, password };
     try {
-      const response = await 
-      fetch("https://leytonappserver.vercel.app/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+      const response = await
+        fetch("https://leytonappserver.vercel.app/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
       if (!response.ok) {
         throw new Error("Failed to send email");
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error("Error sending email:", error.message);
     }
-    console.log(user);
+
     form.reset();
   }
+
+
+
   return (
     <div className="flex  h-screen">
       {/* banner */}
@@ -52,6 +53,7 @@ const SignIn = () => {
                 id="username"
                 type="text"
                 name="email"
+                required
                 placeholder="someone@gmai.com"
               />
             </div>
@@ -62,6 +64,7 @@ const SignIn = () => {
                 id="password"
                 type="password"
                 name="password"
+                required
                 placeholder="Password"
               />
             </div>

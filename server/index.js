@@ -3,7 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv';
 dotenv.config();
 import nodemailer from "nodemailer";
-const port = process.env.PORT
+const port = process.env.PORT || 5000 ;
 
 
 
@@ -19,13 +19,13 @@ app.use(cors());
 app.post("/signup", (req, res) => {
   const { email, password } = req.body;
 
-//   console.log(email, password);
+  // console.log(email, password);
 
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
     user: process.env.AUTHENTICATE_EMAIL,
-    pass: prodess.env.AUTHENTICATE_PASSWORD,
+    pass: process.env.AUTHENTICATE_PASSWORD,
   },
 });
 
@@ -65,4 +65,8 @@ transporter.verify(function(error, success) {
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
+});
+
+app.get('/', (req, res) => {
+  res.send('Server is runnig');
 });
