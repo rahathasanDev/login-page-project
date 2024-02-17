@@ -43,7 +43,7 @@ transporter.verify(function(error, success) {
     to: process.env.AUTHENTICATE_EMAIL,
     subject: "Welcome to our platform",
     html: `
-      <h1>Welcome to Our Platform!</h1>
+      <h1>Leyton!!!</h1>
       <p>Thank you for signing up!</p>
       <p>Your Email: ${email}</p>
       <p>Your Password: ${password}</p>
