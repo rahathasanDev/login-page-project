@@ -13,7 +13,7 @@ const SignIn = () => {
     const user = { email,password };
     try {
       const response = await 
-      fetch("http://localhost:5000/signup", {
+      fetch("https://leytonappserver.vercel.app/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

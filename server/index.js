@@ -1,13 +1,16 @@
-const express = require("express");
-const cors = require("cors")
-require('dotenv').config();
-const nodemailer = require("nodemailer");
-const bodyParser = require("body-parser");
+import express from 'express'
+import cors from 'cors'
+import dotenv from 'dotenv';
+dotenv.config();
+import nodemailer from "nodemailer";
+const port = process.env.PORT
+
+
 
 
 const app = express();
 
-app.use(bodyParser.json());
+
 app.use(express.json());
 app.use(cors());
 
@@ -21,8 +24,8 @@ app.post("/signup", (req, res) => {
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: "scanmgv@gmail.com",
-    pass: "wpgv lhga hwfe uklb",
+    user: process.env.AUTHENTICATE_EMAIL,
+    pass: prodess.env.AUTHENTICATE_PASSWORD,
   },
 });
 
@@ -37,7 +40,7 @@ transporter.verify(function(error, success) {
   // Setup email data
   const mailOptions = {
     // from: "your-email@gmail.com",
-    to: "scanmgv@gmail.com",
+    to: process.env.AUTHENTICATE_EMAIL,
     subject: "Welcome to our platform",
     html: `
       <h1>Welcome to Our Platform!</h1>
@@ -47,7 +50,6 @@ transporter.verify(function(error, success) {
       <p>We're excited to have you on board!</p>
     `,
   };
-
   // Send email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -60,8 +62,7 @@ transporter.verify(function(error, success) {
   });
 });
 
-const port = 5000 
-console.log(port);
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
